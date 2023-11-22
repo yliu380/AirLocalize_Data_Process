@@ -82,16 +82,16 @@ def get_spot_info(dir_path, keyword, filename, is_granule, channel_name, median_
             out_cur = pd.read_excel(out_file)
         else:
             # If the file doesn't exist, create an empty DataFrame
-            out_cur = pd.DataFrame({"NumRNA": range(1, 36),
-                                                "Num_Spots_With_X_Num_RNA_In_Granule": [0] * 35,
-                                                "Num_Spots_With_X_Num_RNA_In_Area": [0] * 35})
+            out_cur = pd.DataFrame({"NumRNA": range(1, 41),
+                                                "Num_Spots_With_X_Num_RNA_In_Granule": [0] * 40,
+                                                "Num_Spots_With_X_Num_RNA_In_Area": [0] * 40})
         if is_granule != "":
-            out_data = {"NumRNA": range(1, 36),
-                                f"Num_Spots_With_X_Num_RNA_In_Granule_{image_num}": [num_rna_counts_granule.get(i, 0) for i in range(1, 36)],
-                                f"Num_Spots_With_X_Num_RNA_In_Area_{image_num}": [num_rna_counts_pcell.get(i, 0) for i in range(1, 36)]}
+            out_data = {"NumRNA": range(1, 41),
+                                f"Num_Spots_With_X_Num_RNA_In_Granule_{image_num}": [num_rna_counts_granule.get(i, 0) for i in range(1, 41)],
+                                f"Num_Spots_With_X_Num_RNA_In_Area_{image_num}": [num_rna_counts_pcell.get(i, 0) for i in range(1, 41)]}
         else:
-            out_data = {"NumRNA": range(1, 36),
-                                f"Num_Spots_With_X_Num_RNA_In_Area_{image_num}": [num_rna_counts_pcell.get(i, 0) for i in range(1, 36)]}
+            out_data = {"NumRNA": range(1, 41),
+                                f"Num_Spots_With_X_Num_RNA_In_Area_{image_num}": [num_rna_counts_pcell.get(i, 0) for i in range(1, 41)]}
         
         out_df = pd.DataFrame(out_data)
         out_comb = out_cur.merge(out_df, on="NumRNA", how="outer")
